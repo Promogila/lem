@@ -1,69 +1,102 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>lem</title>
+  <title>Optimized Website</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+
     .gallery img {
-      max-width: 100%;
+      width: 100%;
+      background-color: #f0f0f0; /* Placeholder background */
+      min-height: 150px; /* Space reserved for lazy-loaded images */
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .gallery img[data-loaded="true"] {
+      opacity: 1;
+    }
+
+    .pesan {
+      margin: 20px auto;
       display: block;
-      margin: 10px auto;
+      width: 80%;
+      max-width: 300px;
     }
 
-    .gallery .pesan {
-      animation: shake 1s infinite; /* Animasi goyang-goyang */
-      cursor: pointer;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      75% { transform: translateX(-5px); }
+    .harga, .pembayaran {
+      text-align: center;
+      padding: 20px;
     }
   </style>
-
-  <!-- Tambahkan Kode Facebook Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1747472939370878'); 
-    fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1747472939370878&ev=PageView&noscript=1"/>
-  </noscript>
+  <!-- Preload important images -->
+  <link rel="preload" href="kall.webp" as="image">
 </head>
 <body>
-  <div class="container">
-    <div class="gallery">
-      <img src="kall.png" alt="kall">
-      <!-- Gambar pesan dengan animasi -->
-      <a href="https://wa.me/6289652253675?text=[IDL9OP]%20AMBIL%20DISKON%20-%20Saya%20Ingin%20Membeli%20Lem,%20Apakah%20Masih%20Ada%20Stok?" 
-         target="_blank" 
-         onclick="fbq('track', 'PesanSekarang');">
-        <img src="pesan.png" alt="Pesan Sekarang" class="pesan">
-      </a>
-      <img src="satu.jpg" alt="lem 1">
-      <img src="dua.jpg" alt="lem 2">
-      <img src="tiga.jpg" alt="lem 3">
-      <img src="empat.jpg" alt="lem 4">
-      <img src="harga.png" alt="Harga">
-      <a href="https://wa.me/6289652253675?text=[IDL9OP]%20AMBIL%20DISKON%20-%20Saya%20Ingin%20Membeli%20Kalkulator,%20Apakah%20Masih%20Ada%20Stok?" 
-         target="_blank" 
-         onclick="fbq('track', 'PesanSekarang');">
-        <img src="pesan.png" alt="Pesan Sekarang" class="pesan">
-      </a>
-      <img src="pembayaran.png" alt="Pembayaran">
-    </div>
-  </div>
+
+  <!-- Hero Section -->
+  <header>
+    <img src="kall.webp" alt="kall" class="hero" width="100%" style="display: block;">
+  </header>
+
+  <!-- Call to Action -->
+  <section class="pesan-sekarang">
+    <img src="pesan.webp" alt="Pesan Sekarang" class="pesan" loading="lazy">
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery">
+    <img src="satu.webp" alt="lem 1" loading="lazy">
+    <img src="dua.webp" alt="lem 2" loading="lazy">
+    <img src="tiga.webp" alt="lem 3" loading="lazy">
+    <img src="empat.webp" alt="lem 4" loading="lazy">
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="harga">
+    <img src="harga.webp" alt="Harga" loading="lazy">
+  </section>
+
+  <!-- Payment Section -->
+  <section class="pembayaran">
+    <img src="pembayaran.webp" alt="Pembayaran" loading="lazy">
+  </section>
+
+  <!-- Facebook Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s) {
+      if(f.fbq) return; n=f.fbq=function() {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      }; 
+      if(!f._fbq) f._fbq=n;
+      n.push=n; n.loaded=!0; n.version='2.0';
+      n.queue=[]; t=b.createElement(e);
+      t.async=!0; t.src=v; s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+    fbq('track', 'PesanSekarang');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" />
+  </noscript>
+
 </body>
 </html>
